@@ -59,21 +59,21 @@ void AnalyticX::flurryLogEvent(const char * eventName, ...) {
     [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:szBuf]];
 }
 
-void AnalyticX::flurryLogEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters) {
+void AnalyticX::flurryLogEventWithParameters(const char * eventName,  std::map<std::string, std::string>& parameters) {
     
-    [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromCCDictionary:parameters]];
+    [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromStdMap:parameters]];
 }
 
 void AnalyticX::flurryLogEventTimed(const char * eventName, bool timed) {
     [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:eventName] timed:timed];
 }
 
-void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName, cocos2d::__Dictionary * parameters, bool timed) {
-    [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromCCDictionary:parameters] timed:timed];
+void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName,  std::map<std::string, std::string>& parameters, bool timed) {
+    [Flurry logEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromStdMap:parameters] timed:timed];
 }
 
-void AnalyticX::flurryEndTimedEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters) {
-    [Flurry endTimedEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromCCDictionary:parameters]];
+void AnalyticX::flurryEndTimedEventWithParameters(const char * eventName,  std::map<std::string, std::string>& parameters) {
+    [Flurry endTimedEvent:[AnalyticXStringUtil nsstringFromCString:eventName] withParameters:[AnalyticXStringUtil nsDictionaryFromStdMap:parameters]];
 }
 
 void AnalyticX::flurryLogPageView() {

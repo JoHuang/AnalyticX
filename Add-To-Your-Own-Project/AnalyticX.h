@@ -65,7 +65,7 @@ public:
     //iOS + Android
     static void flurryLogEvent(const char * eventName, ...);
     //iOS + Android
-    static void flurryLogEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters);
+    static void flurryLogEventWithParameters(const char * eventName, std::map<std::string, std::string>& parameters);
 
     /* 
      start or end timed events
@@ -78,9 +78,9 @@ public:
     //iOS + Android
     static void flurryLogEventTimed(const char * eventName, bool timed);
     //iOS + Android
-    static void flurryLogEventWithParametersTimed(const char * eventName, cocos2d::__Dictionary * parameters, bool timed);
+    static void flurryLogEventWithParametersTimed(const char * eventName, std::map<std::string, std::string>& parameters, bool timed);
     //iOS + Android. On Android, the *parameters* will be ignored
-    static void flurryEndTimedEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters); // non-nil parameters will update the parameters
+    static void flurryEndTimedEventWithParameters(const char * eventName,  std::map<std::string, std::string>& parameters); // non-nil parameters will update the parameters
     
     /*
      count page views

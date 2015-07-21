@@ -17,6 +17,7 @@ class AnalyticXStringUtilAndroid {
 
 public:
     static jobjectArray jobjectArrayFromCCDictionary(cocos2d::JniMethodInfo minfo, cocos2d::__Dictionary * ccDictionary);
+    static jobjectArray jobjectArrayFromStdMap(cocos2d::JniMethodInfo minfo, std::map<std::string, std::string>& stdMap);
 };
 
 #endif

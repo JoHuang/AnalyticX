@@ -16,6 +16,7 @@
 + (NSString *)nsstringFromCString:(const char *)cstring;
 + (const char *)cstringFromNSString:(NSString *)nsstring;
 + (NSDictionary *)nsDictionaryFromCCDictionary:(cocos2d::__Dictionary *)ccDictionary;
++ (NSDictionary *)nsDictionaryFromStdMap:(std::map<std::string, std::string>&) stdMap;
 
 @end
 

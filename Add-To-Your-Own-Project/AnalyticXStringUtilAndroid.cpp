@@ -62,3 +62,32 @@ jobjectArray AnalyticXStringUtilAndroid::jobjectArrayFromCCDictionary(cocos2d::J
 
     return result;
 }
+
+jobjectArray AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(cocos2d::JniMethodInfo minfo, std::map<std::string, std::string>& stdMap) {
+    if (stdMap.size() <= 0) {
+        return nullptr;
+    }
+    
+    JNIEnv *pEnv = minfo.env;
+    jclass jStringCls = 0;
+    jStringCls = pEnv->FindClass("java/lang/String");
+    
+    jobjectArray result;
+    result = pEnv->NewObjectArray(2 * stdMap.size(), jStringCls, NULL);
+    
+    if (result == NULL) {
+        cocos2d::log("failed to create a new jobjectArray");
+        return NULL;
+    }
+    
+    int i = 0;
+    for (auto& kv : stdMap) {
+        jstring keyString = minfo.env->NewStringUTF(kv.first.c_str());
+        jstring objectString = minfo.env->NewStringUTF(kv.second.c_str());
+        pEnv->SetObjectArrayElement(result, i * 2, keyString);
+        pEnv->SetObjectArrayElement(result, i * 2 + 1, objectString);
+        i++;
+    }
+    
+    return result;
+}

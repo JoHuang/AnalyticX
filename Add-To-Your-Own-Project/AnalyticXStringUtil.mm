@@ -80,5 +80,15 @@
     
     return nsDict;
 }
-
++ (NSDictionary *)nsDictionaryFromStdMap:(std::map<std::string, std::string>&) stdMap {
+    if (stdMap.size() <= 0) {
+        return nil;
+    }
+    NSMutableDictionary *nsDict = [NSMutableDictionary dictionaryWithCapacity:stdMap.size()];
+    for (auto& kv : stdMap) {
+        nsDict[[AnalyticXStringUtil nsstringFromCString:kv.first.c_str()]] =
+        [AnalyticXStringUtil nsstringFromCString:kv.second.c_str()];
+    }
+    return nsDict;
+}
 @end

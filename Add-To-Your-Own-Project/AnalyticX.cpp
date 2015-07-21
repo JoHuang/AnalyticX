@@ -63,7 +63,7 @@ void AnalyticX::flurryLogEventTimed(const char * eventName, bool timed) {
     }
 }
 
-void AnalyticX::flurryLogEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters) {
+void AnalyticX::flurryLogEventWithParameters(const char * eventName, std::map<std::string, std::string>& parameters) {
     cocos2d::JniMethodInfo minfo;
 
     bool isHave = cocos2d::JniHelper::getStaticMethodInfo(minfo,"com/diwublog/AnalyticX/AnalyticXBridge","Bridge", "(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)V"); 
@@ -76,12 +76,12 @@ void AnalyticX::flurryLogEventWithParameters(const char * eventName, cocos2d::__
 		jstring stringArg0 = minfo.env->NewStringUTF(eventNameString.c_str());
         jstring stringArg2 = minfo.env->NewStringUTF("false");
 
-        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromCCDictionary(minfo, parameters), stringArg2);
+        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(minfo, parameters), stringArg2);
 
     }
 }
 
-void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName, cocos2d::__Dictionary * parameters, bool timed) {
+void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName, std::map<std::string, std::string>& parameters, bool timed) {
     
     cocos2d::JniMethodInfo minfo;
     
@@ -99,14 +99,14 @@ void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName, cocos2
             stringArg2 = minfo.env->NewStringUTF("true");
         }
         
-        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromCCDictionary(minfo, parameters), stringArg2);
+        minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(minfo, parameters), stringArg2);
         
     }
 }
 
 // Since Flurry for Android does not support *parameters* in *endTimedEvent()*.
 // This *parameters* will be ignored when running in Android
-void AnalyticX::flurryEndTimedEventWithParameters(const char * eventName, cocos2d::__Dictionary * parameters) {
+void AnalyticX::flurryEndTimedEventWithParameters(const char * eventName, std::map<std::string, std::string>& parameters) {
     
     cocos2d::JniMethodInfo minfo;
     
