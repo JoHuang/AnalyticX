@@ -54,8 +54,8 @@ jobjectArray AnalyticXStringUtilAndroid::jobjectArrayFromCCDictionary(cocos2d::J
             value = cocos2d::__String::create("Unknown Object");
         }
 
-        jstring keyString = minfo.env->NewStringUTF(((cocos2d::__String *)ccDictionary->allKeys()->getObjectAtIndex(i))->getCString());
-        jstring objectString = minfo.env->NewStringUTF(value->getCString());
+        jstring keyString = cocos2d::StringUtils::newStringUTFJNI(minfo.env,((cocos2d::__String *)ccDictionary->allKeys()->getObjectAtIndex(i))->getCString());
+        jstring objectString = cocos2d::StringUtils::newStringUTFJNI(minfo.env,value->getCString());
         pEnv->SetObjectArrayElement(result, i * 2, keyString);
         pEnv->SetObjectArrayElement(result, i * 2 + 1, objectString);
     }
@@ -82,8 +82,8 @@ jobjectArray AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(cocos2d::JniMeth
     
     int i = 0;
     for (auto& kv : stdMap) {
-        jstring keyString = minfo.env->NewStringUTF(kv.first.c_str());
-        jstring objectString = minfo.env->NewStringUTF(kv.second.c_str());
+        jstring keyString = cocos2d::StringUtils::newStringUTFJNI(minfo.env,kv.first.c_str());
+        jstring objectString = cocos2d::StringUtils::newStringUTFJNI(minfo.env,kv.second.c_str());
         pEnv->SetObjectArrayElement(result, i * 2, keyString);
         pEnv->SetObjectArrayElement(result, i * 2 + 1, objectString);
         i++;

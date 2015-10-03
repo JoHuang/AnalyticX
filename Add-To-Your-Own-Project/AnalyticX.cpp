@@ -33,9 +33,9 @@ void AnalyticX::flurryLogEvent(const char * eventName, ...) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryLogEvent");
-        jstring stringArg1 = minfo.env->NewStringUTF(szBuf);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryLogEvent");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,szBuf);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
 
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -50,12 +50,12 @@ void AnalyticX::flurryLogEventTimed(const char * eventName, bool timed) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryLogEventTimed");
-        jstring stringArg1 = minfo.env->NewStringUTF(eventName);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryLogEventTimed");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,eventName);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (timed == true) {
-            stringArg2 = minfo.env->NewStringUTF("true");
+            stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"true");
 
         }
         
@@ -73,8 +73,8 @@ void AnalyticX::flurryLogEventWithParameters(const char * eventName, std::map<st
     } else {
         string eventNameString("flurryLogEventWithParameters,");
         eventNameString += eventName;
-		jstring stringArg0 = minfo.env->NewStringUTF(eventNameString.c_str());
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+		jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,eventNameString.c_str());
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
 
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(minfo, parameters), stringArg2);
 
@@ -92,11 +92,11 @@ void AnalyticX::flurryLogEventWithParametersTimed(const char * eventName, std::m
     } else {
         string eventNameString("flurryLogEventWithParametersTimed,");
         eventNameString += eventName;
-        jstring stringArg0 = minfo.env->NewStringUTF(eventNameString.c_str());
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,eventNameString.c_str());
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (timed == true) {
-            stringArg2 = minfo.env->NewStringUTF("true");
+            stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"true");
         }
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, AnalyticXStringUtilAndroid::jobjectArrayFromStdMap(minfo, parameters), stringArg2);
@@ -115,9 +115,9 @@ void AnalyticX::flurryEndTimedEventWithParameters(const char * eventName, std::m
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryEndTimedEvent");
-        jstring stringArg1 = minfo.env->NewStringUTF(eventName);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryEndTimedEvent");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,eventName);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -132,9 +132,9 @@ void AnalyticX::flurryLogPageView() {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryLogPageView");
-        jstring stringArg1 = minfo.env->NewStringUTF("placeholder");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryLogPageView");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"placeholder");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -149,9 +149,9 @@ void AnalyticX::flurrySetAppVersion(const char * version) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurrySetAppVersion");
-        jstring stringArg1 = minfo.env->NewStringUTF(version);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurrySetAppVersion");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,version);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -187,12 +187,12 @@ void AnalyticX::flurrySetDebugLogEnabled(bool value) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurrySetLogEnabled");
-        jstring stringArg1 = minfo.env->NewStringUTF("placeholder");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurrySetLogEnabled");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"placeholder");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (value == true) {
-            stringArg2 = minfo.env->NewStringUTF("true");
+            stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"true");
         }
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
@@ -220,12 +220,12 @@ void AnalyticX::flurrySetSecureTransportEnabled(bool value) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurrySetSecureEnabled");
-        jstring stringArg1 = minfo.env->NewStringUTF("placeholder");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurrySetSecureEnabled");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"placeholder");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (value == true) {
-            stringArg2 = minfo.env->NewStringUTF("true");
+            stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"true");
         }
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
@@ -241,9 +241,9 @@ void AnalyticX::flurryStartSession(const char * apiKey) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryOnStartSession");
-        jstring stringArg1 = minfo.env->NewStringUTF(apiKey);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryOnStartSession");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,apiKey);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -258,9 +258,9 @@ void AnalyticX::flurryEndSession() {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryOnEndSession");
-        jstring stringArg1 = minfo.env->NewStringUTF("placeholder");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryOnEndSession");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"placeholder");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -275,9 +275,9 @@ void AnalyticX::flurrySetUserID(const char * userID) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurrySetUserID");
-        jstring stringArg1 = minfo.env->NewStringUTF(userID);
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurrySetUserID");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,userID);
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
     }
@@ -306,12 +306,12 @@ void AnalyticX::flurrySetGender(const char * gender) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurrySetGender");
-        jstring stringArg1 = minfo.env->NewStringUTF("female");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurrySetGender");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"female");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (strcmp(gender, "m") == 0) {
-            stringArg1 = minfo.env->NewStringUTF("male");
+            stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"male");
         }
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
@@ -331,12 +331,12 @@ void AnalyticX::flurrySetReportLocation(bool reportLocation) {
     if (!isHave) {
         //do nothing
     } else {
-        jstring stringArg0 = minfo.env->NewStringUTF("flurryReportLocation");
-        jstring stringArg1 = minfo.env->NewStringUTF("placeholder");
-        jstring stringArg2 = minfo.env->NewStringUTF("false");
+        jstring stringArg0 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"flurryReportLocation");
+        jstring stringArg1 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"placeholder");
+        jstring stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"false");
         
         if (reportLocation == true) {
-            stringArg2 = minfo.env->NewStringUTF("true");
+            stringArg2 = cocos2d::StringUtils::newStringUTFJNI(minfo.env,"true");
         }
         
         minfo.env->CallStaticVoidMethod(minfo.classID, minfo.methodID, stringArg0, stringArg1, stringArg2);
